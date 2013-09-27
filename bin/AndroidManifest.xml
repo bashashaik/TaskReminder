@@ -8,6 +8,9 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -25,6 +28,10 @@
         <activity
             android:name="com.appspot.mapconapp.taskreminder.ReminderEdit"
             android:label="@string/title_activity_reminder_edit" >
+        </activity>
+        <activity
+            android:name="com.appspot.mapconapp.taskreminder.Test"
+            android:label="@string/title_activity_test" >
         </activity>
     </application>
 
