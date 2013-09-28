@@ -117,8 +117,8 @@ public class ReminderEdit extends Activity {
 	}
 	
 	public void storeData(String title, String body, String dateTime){
-		MyDbAdapter dbAdapter = new MyDbAdapter();
-		dbAdapter = dbAdapter.getDb(context);
+		MyDbAdapter dbAdapter = new MyDbAdapter(context);
+		dbAdapter = dbAdapter.open();
 		long n = dbAdapter.myInsert(title, body, dateTime);
 		if(n >=1 ){
 			Intent intent = new Intent(context, ReminderList.class);
