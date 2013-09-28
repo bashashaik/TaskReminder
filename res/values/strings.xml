@@ -11,5 +11,6 @@
     <string name="remind">Remind</string>
     <string name="add_reminder">Add Reminder</string>
     <string name="title_activity_test">Test</string>
+    <string name="exit">Exit</string>
 
 </resources>

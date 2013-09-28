@@ -3,11 +3,12 @@ package com.appspot.mapconapp.taskreminder;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,13 +19,25 @@ public class ReminderList extends ListActivity {
 	final String OS[] = { "OS X", "Windows XP", "Ubuntu", "Read Hat",
 			"Android", "IOS", "Windows Phone" };
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_reminder_list);
 		context = this;
-		ListAdapter adapter = new ArrayAdapter<String>(context,
-				android.R.layout.simple_list_item_1, android.R.id.text1, OS);
+		/*
+		 * ListAdapter adapter = new ArrayAdapter<String>(context,
+		 * android.R.layout.simple_list_item_1, android.R.id.text1, OS);
+		 * setListAdapter(adapter);
+		 */
+		MyDbAdapter myDbAdapter = new MyDbAdapter(context);
+		myDbAdapter = myDbAdapter.open();
+		Cursor cursor = myDbAdapter.getAll();
+		startManagingCursor(cursor);
+		String from[] = { MyDbAdapter.KEY_TITLE, MyDbAdapter.KEY_DATE_TIME };
+		int to[] = { android.R.id.text1, android.R.id.text2 };
+		ListAdapter adapter = new SimpleCursorAdapter(context,
+				android.R.layout.two_line_list_item, cursor, from, to);
 		setListAdapter(adapter);
 	}
 
@@ -50,8 +63,11 @@ public class ReminderList extends ListActivity {
 			Intent intent = new Intent(context, ReminderEdit.class);
 			startActivity(intent);
 			break;
+		case R.id.exit:
+			ReminderList.this.finish();
+			break;
 		}
-		//return super.onOptionsItemSelected(item);
+		// return super.onOptionsItemSelected(item);
 		return true;
 	}
 
