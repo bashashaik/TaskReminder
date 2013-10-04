@@ -38,14 +38,11 @@ public class MyDbAdapter {
 		myDb = myDbHealper.getWritableDatabase();
 		return this;
 	}
-<<<<<<< HEAD
 	
 	public void close(){
 		myDb.close();
 	}
-=======
->>>>>>> f50adad6002e9de5fb84dba8a511a63dd6bb1d64
-
+	
 	public long myInsert(String title, String body, String dateTime) {
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(MyDbAdapter.KEY_TITLE, title);
