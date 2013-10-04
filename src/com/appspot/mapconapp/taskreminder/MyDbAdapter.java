@@ -38,6 +38,10 @@ public class MyDbAdapter {
 		myDb = myDbHealper.getWritableDatabase();
 		return this;
 	}
+	
+	public void close(){
+		myDb.close();
+	}
 
 	public long myInsert(String title, String body, String dateTime) {
 		ContentValues contentValues = new ContentValues();

@@ -123,6 +123,7 @@ public class ReminderEdit extends Activity {
 		if(n >=1 ){
 			Intent intent = new Intent(context, ReminderList.class);
 			Toast.makeText(context, String.valueOf(n), Toast.LENGTH_LONG).show();
+			dbAdapter.close();
 			startActivity(intent);
 		}
 		else{

@@ -39,6 +39,7 @@ public class ReminderList extends ListActivity {
 		ListAdapter adapter = new SimpleCursorAdapter(context,
 				android.R.layout.two_line_list_item, cursor, from, to);
 		setListAdapter(adapter);
+		myDbAdapter.close();
 	}
 
 	@Override
